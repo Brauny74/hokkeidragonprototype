@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=3 uid="uid://dnt4bxmqait75"]
+
+[ext_resource type="PackedScene" uid="uid://51uvpmtxabg7" path="res://Models/boss.glb" id="1_0154r"]
+[ext_resource type="Script" uid="uid://ulrgai7scf61" path="res://Scripts/enemy_controller.gd" id="1_wwfse"]
+[ext_resource type="Script" uid="uid://fyr1er365571" path="res://Scripts/weapon_handler.gd" id="3_cxrok"]
+[ext_resource type="PackedScene" uid="uid://dctu884u57mso" path="res://Scenes/boss_weapon.tscn" id="4_ukjjc"]
+[ext_resource type="Script" uid="uid://bjxi8f4gfee77" path="res://Scripts/health.gd" id="5_n725y"]
+[ext_resource type="Texture2D" uid="uid://dmy0p0y3bs551" path="res://Materials/fire_particle.png" id="6_mh6p8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0154r"]
+radius = 2.83676
+
+[sub_resource type="Gradient" id="Gradient_qtle2"]
+offsets = PackedFloat32Array(0, 0.290909, 1)
+colors = PackedColorArray(1, 0.792157, 0, 1, 1, 0.34902, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n4lj1"]
+gradient = SubResource("Gradient_qtle2")
+
+[sub_resource type="Curve" id="Curve_yq25j"]
+_data = [Vector2(0.00735295, 0), 0.0, 0.0, 0, 0, Vector2(0.220588, 0.820225), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a6kyw"]
+curve = SubResource("Curve_yq25j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_odcco"]
+emission_shape = 1
+emission_sphere_radius = 2.17
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+gravity = Vector3(5, 0, 0)
+scale_min = 0.75
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_a6kyw")
+color_ramp = SubResource("GradientTexture1D_n4lj1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_361um"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0.341176, 0.0823529, 1)
+albedo_texture = ExtResource("6_mh6p8")
+
+[sub_resource type="SphereMesh" id="SphereMesh_q76ad"]
+material = SubResource("StandardMaterial3D_361um")
+radius = 0.3
+height = 0.55
+
+[node name="Boss" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_wwfse")
+direction = Vector2(0, 10)
+death_time = 1.0
+damage_on_touch = 20
+movement = 1
+
+[node name="Mesh" parent="." instance=ExtResource("1_0154r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0154r")
+
+[node name="WeaponHandler" type="Node3D" parent="."]
+script = ExtResource("3_cxrok")
+metadata/_custom_type_script = "uid://fyr1er365571"
+
+[node name="BossWeapon" parent="WeaponHandler" instance=ExtResource("4_ukjjc")]
+shoot_points = Array[Vector3]([Vector3(-1.3, 2.89856, 0), Vector3(-2.126, 2.15951, 0), Vector3(-2.74913, 1.56536, 0), Vector3(-2.7926, -1.59374, 0), Vector3(-2.18397, -2.17339, 0), Vector3(-1.38695, -2.91244, 0)])
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_n725y")
+MaxHealth = 500
+metadata/_custom_type_script = "uid://bjxi8f4gfee77"
+
+[node name="DeathVFX" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0335612, -0.456435, -1.5841)
+sorting_offset = 0.5
+emitting = false
+amount = 200
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_odcco")
+draw_pass_1 = SubResource("SphereMesh_q76ad")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="WeaponHandler" to="WeaponHandler" method="_on_child_entered_tree"]

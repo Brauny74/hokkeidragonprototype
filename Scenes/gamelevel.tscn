@@ -1,0 +1,654 @@
+[gd_scene load_steps=22 format=3 uid="uid://c6sbc8blqwpfn"]
+
+[ext_resource type="Script" uid="uid://ce10kjibrwam5" path="res://Scripts/constant_movement.gd" id="1_6aw2y"]
+[ext_resource type="PackedScene" uid="uid://dmfv2khvjys3r" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://3rvyxbokcxei" path="res://Scripts/game_manager.gd" id="1_qg11v"]
+[ext_resource type="PackedScene" uid="uid://dth7kcbo6cbh5" path="res://Scenes/enemy_drone_01.tscn" id="3_1etxn"]
+[ext_resource type="Script" uid="uid://db8v2w4kbaqi" path="res://Scripts/activator.gd" id="3_55vxf"]
+[ext_resource type="PackedScene" uid="uid://chkkuc4xcpjqn" path="res://Models/terrain.glb" id="4_1etxn"]
+[ext_resource type="PackedScene" uid="uid://qrum8b8ptu87" path="res://Scenes/power_bonus.tscn" id="4_d5s33"]
+[ext_resource type="PackedScene" uid="uid://dnt4bxmqait75" path="res://Scenes/boss.tscn" id="5_c5wvc"]
+[ext_resource type="Script" uid="uid://cw7ggvgcca01t" path="res://Scripts/stopper.gd" id="6_8nru3"]
+[ext_resource type="Script" uid="uid://cg8qme7xptptc" path="res://Scripts/ui_manager.gd" id="8_4mrc0"]
+[ext_resource type="Texture2D" uid="uid://c310wt5uae5om" path="res://Materials/health_bar_under.png" id="8_xd5m6"]
+[ext_resource type="Texture2D" uid="uid://hvaxcnplkdcw" path="res://Materials/health_bar_progress.png" id="9_u5ett"]
+[ext_resource type="Script" uid="uid://da1pw816yljul" path="res://Scripts/connected_bar.gd" id="10_jpfwo"]
+[ext_resource type="Texture2D" uid="uid://bqpo6hhkjmesg" path="res://Materials/bonus_bad_under.png" id="11_4mrc0"]
+[ext_resource type="Texture2D" uid="uid://dherwwb23m7eb" path="res://Materials/bonus_bad_progress.png" id="12_hv2rw"]
+[ext_resource type="Theme" uid="uid://cjbvtx7sjmoki" path="res://main_theme.tres" id="14_hv2rw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjgbg"]
+sky_top_color = Color(0.449309, 0.593679, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.0675938
+ground_bottom_color = Color(0.408113, 0.438346, 0.481108, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+ground_curve = 0.022974
+
+[sub_resource type="Sky" id="Sky_bo1nx"]
+sky_material = SubResource("ProceduralSkyMaterial_jjgbg")
+
+[sub_resource type="Environment" id="Environment_8gbba"]
+background_mode = 2
+sky = SubResource("Sky_bo1nx")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c5wvc"]
+size = Vector3(7.8913, 33.3131, 9.77295)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1etxn"]
+size = Vector3(4.56665, 67.6135, 18.2671)
+
+[node name="GameLevel" type="Node3D"]
+script = ExtResource("1_qg11v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8gbba")
+
+[node name="MovingPart" type="Node3D" parent="."]
+script = ExtResource("1_6aw2y")
+direction = Vector2(-1, 0)
+speed = 10.0
+
+[node name="terrain" parent="MovingPart" instance=ExtResource("4_1etxn")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 46.0819, -9.75763, -80)
+
+[node name="Enemies" type="Node3D" parent="MovingPart"]
+
+[node name="EnemyDrone01" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.6652, 15.3755, 0)
+speed = 2.0
+
+[node name="EnemyDrone02" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.6652, -14.6617, 0)
+speed = 2.0
+
+[node name="EnemyDrone03" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.3486, 15.3755, 0)
+speed = 2.0
+
+[node name="EnemyDrone04" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.3486, -14.6617, 0)
+speed = 2.0
+
+[node name="EnemyDrone05" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 76.9095, 15.3755, 0)
+speed = 2.0
+
+[node name="EnemyDrone06" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 76.9095, -14.6617, 0)
+speed = 2.0
+
+[node name="EnemyDrone07" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 190.132, 0.294009, 0)
+speed = 2.0
+
+[node name="EnemyDrone08" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 195.548, 5.32702, 0)
+speed = 2.0
+
+[node name="EnemyDrone09" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 195.548, -5.20256, 0)
+speed = 2.0
+
+[node name="EnemyDrone10" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200.043, -8.77864, 0)
+speed = 2.0
+
+[node name="EnemyDrone11" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 200.043, 9.16795, 0)
+speed = 2.0
+
+[node name="EnemyDrone12" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.729, 7.38718, 0)
+speed = 2.0
+
+[node name="EnemyDrone13" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.729, 14.2387, 0)
+speed = 2.0
+
+[node name="EnemyDrone14" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.729, 0.768074, 0)
+speed = 2.0
+
+[node name="EnemyDrone15" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.729, -5.72844, 0)
+speed = 2.0
+
+[node name="EnemyDrone16" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 230.729, -13.8184, 0)
+speed = 2.0
+
+[node name="EnemyDrone17" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, 17.4384, 0)
+speed = 2.0
+
+[node name="EnemyDrone18" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, 24.2899, 0)
+speed = 2.0
+
+[node name="EnemyDrone19" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, 10.8193, 0)
+speed = 2.0
+
+[node name="EnemyDrone20" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, 4.32276, 0)
+speed = 2.0
+
+[node name="EnemyDrone21" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, -3.76722, 0)
+speed = 2.0
+
+[node name="EnemyDrone22" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, -10.3863, 0)
+speed = 2.0
+
+[node name="EnemyDrone23" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 259.309, -18.5989, 0)
+speed = 2.0
+
+[node name="EnemyDrone24" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 114.775, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone25" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 114.775, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone26" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 124.458, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone27" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 124.458, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone28" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 134.019, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone29" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 134.019, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone30" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 145.177, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone31" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 145.177, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone32" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 154.86, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone33" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 154.86, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone34" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.421, 14.8205, 0)
+direction = Vector2(-1, -0.65)
+speed = 2.0
+
+[node name="EnemyDrone35" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 164.421, -14.884, 0)
+direction = Vector2(-1, 0.65)
+speed = 2.0
+
+[node name="EnemyDrone36" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 87.3459, 15.3755, 0)
+speed = 2.0
+
+[node name="EnemyDrone37" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 87.3459, -14.6617, 0)
+speed = 2.0
+
+[node name="EnemyDrone38" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 83.2527, 2.04118, 0)
+direction = Vector2(-1, 5)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone39" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 289.559, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone40" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 289.559, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone41" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 299.242, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone42" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 299.242, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone43" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 308.803, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone44" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 308.803, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone45" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 319.961, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone46" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 319.961, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone47" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 329.644, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone48" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 329.644, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone49" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 339.205, 4.70591, 0)
+direction = Vector2(-1, 0.5)
+speed = 2.0
+
+[node name="EnemyDrone50" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 339.205, -5.15843, 0)
+direction = Vector2(-1, -0.5)
+speed = 2.0
+
+[node name="EnemyDrone51" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 358.65, -0.323319, 0)
+speed = 2.0
+
+[node name="EnemyDrone52" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 364.066, 4.70969, 0)
+direction = Vector2(-1, -0.3)
+speed = 2.0
+
+[node name="EnemyDrone53" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 364.066, -5.81989, 0)
+direction = Vector2(-1, 0.3)
+speed = 2.0
+
+[node name="EnemyDrone54" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 368.561, -9.39597, 0)
+direction = Vector2(-1, 0.6)
+speed = 2.0
+
+[node name="EnemyDrone55" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 368.561, 8.55062, 0)
+direction = Vector2(-1, -0.6)
+speed = 2.0
+
+[node name="EnemyDrone56" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 397.541, 7.38718, 0)
+direction = Vector2(-1, 3)
+movement = 1
+speed = 2.0
+
+[node name="EnemyDrone57" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 397.541, 14.2387, 0)
+direction = Vector2(-1, 3)
+movement = 1
+speed = 2.0
+
+[node name="EnemyDrone58" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 397.541, 0.768074, 0)
+direction = Vector2(-1, 3)
+movement = 1
+speed = 2.0
+
+[node name="EnemyDrone59" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 397.541, -5.72844, 0)
+direction = Vector2(-1, 3)
+movement = 1
+speed = 2.0
+
+[node name="EnemyDrone60" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 397.541, -13.8184, 0)
+direction = Vector2(-1, 3)
+movement = 1
+speed = 2.0
+
+[node name="EnemyDrone61" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 425.479, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone62" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 425.479, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone63" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 435.162, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone64" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 435.162, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone65" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 444.723, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone66" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 444.723, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone67" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 455.881, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone68" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 455.881, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone69" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 465.564, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone70" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 465.564, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone71" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 475.125, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone72" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 475.125, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone73" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 484.645, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone74" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 484.645, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone75" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 494.206, 14.8205, 0)
+direction = Vector2(-1, 3)
+movement = 1
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone76" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 494.206, -14.884, 0)
+direction = Vector2(-1, 3)
+curve_speed = 0.2
+speed = 2.0
+
+[node name="EnemyDrone77" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 524.713, -0.323319, 0)
+speed = 2.0
+
+[node name="EnemyDrone78" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 530.129, 4.70969, 0)
+direction = Vector2(-1, -0.3)
+speed = 2.0
+
+[node name="EnemyDrone79" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 530.129, -5.81989, 0)
+direction = Vector2(-1, 0.3)
+speed = 2.0
+
+[node name="EnemyDrone80" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 534.624, -9.39597, 0)
+direction = Vector2(-1, 0.6)
+speed = 2.0
+
+[node name="EnemyDrone81" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 534.624, 8.55062, 0)
+direction = Vector2(-1, -0.6)
+speed = 2.0
+
+[node name="Boss" parent="MovingPart/Enemies" instance=ExtResource("5_c5wvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 596.643, 10.0885, 0)
+
+[node name="PowerBonus" parent="MovingPart" instance=ExtResource("4_d5s33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2931, 0, 0)
+
+[node name="Stopper" type="Area3D" parent="MovingPart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 616.964, 0, 0)
+script = ExtResource("6_8nru3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPart/Stopper"]
+shape = SubResource("BoxShape3D_c5wvc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+size = 40.0
+
+[node name="Activator" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.326, 0, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("3_55vxf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Activator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.4716, -1.58826, -0.0251465)
+shape = SubResource("BoxShape3D_1etxn")
+
+[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.6865, 0, 0)
+motion_mode = 1
+slide_on_ceiling = false
+speed = 10.0
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+script = ExtResource("8_4mrc0")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="UILayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+rounded = true
+texture_under = ExtResource("8_xd5m6")
+texture_progress = ExtResource("9_u5ett")
+tint_progress = Color(1, 0, 0, 1)
+script = ExtResource("10_jpfwo")
+
+[node name="PowerBar" type="TextureProgressBar" parent="UILayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+fill_mode = 1
+texture_under = ExtResource("12_hv2rw")
+texture_progress = ExtResource("11_4mrc0")
+tint_under = Color(1, 0.278431, 0, 1)
+script = ExtResource("10_jpfwo")
+
+[node name="VictoryScreen" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="UILayer/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_hv2rw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 151.0
+offset_bottom = -374.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_hv2rw")
+text = "The Enemy was Defeated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/VictoryScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.515
+anchor_top = 0.5
+anchor_right = 0.515
+anchor_bottom = 0.5
+offset_left = -49.78
+offset_top = -35.0
+offset_right = 50.22
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="UILayer/VictoryScreen/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="UILayer/VictoryScreen/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="GameOverScreen" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="UILayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_hv2rw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 151.0
+offset_bottom = -374.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_hv2rw")
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.515
+anchor_top = 0.5
+anchor_right = 0.515
+anchor_bottom = 0.5
+offset_left = -49.78
+offset_top = -35.0
+offset_right = 50.22
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="UILayer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="UILayer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="area_entered" from="Activator" to="Activator" method="_on_area_entered"]
+[connection signal="body_entered" from="Activator" to="Activator" method="_on_body_entered"]
+[connection signal="child_entered_tree" from="Player" to="Player" method="_on_child_entered_tree"]
+[connection signal="pressed" from="UILayer/VictoryScreen/VBoxContainer/RestartButton" to="UILayer" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UILayer/VictoryScreen/VBoxContainer/QuitButton" to="UILayer" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="UILayer/GameOverScreen/VBoxContainer/RestartButton" to="UILayer" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UILayer/GameOverScreen/VBoxContainer/QuitButton" to="UILayer" method="_on_quit_button_pressed"]

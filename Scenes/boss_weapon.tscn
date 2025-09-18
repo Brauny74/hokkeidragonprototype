@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dctu884u57mso"]
+
+[ext_resource type="Script" uid="uid://gfm6ppj2d6xd" path="res://Scripts/weapon.gd" id="1_f8ffb"]
+[ext_resource type="PackedScene" uid="uid://blfgur6recw08" path="res://Scenes/enemy_rocket.tscn" id="2_3gks0"]
+
+[node name="BossWeapon" type="Node3D"]
+script = ExtResource("1_f8ffb")
+projectiles = Array[PackedScene]([ExtResource("2_3gks0")])
+cooldown = 0.3
+metadata/_custom_type_script = "uid://gfm6ppj2d6xd"

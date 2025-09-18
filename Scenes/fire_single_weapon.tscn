@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://jjyfn2m41grq"]
+
+[ext_resource type="Script" uid="uid://gfm6ppj2d6xd" path="res://Scripts/weapon.gd" id="1_jkduf"]
+[ext_resource type="PackedScene" uid="uid://dyoeds1pikhxc" path="res://Scenes/fire_projectile_right.tscn" id="2_misef"]
+[ext_resource type="PackedScene" uid="uid://bm6mfitu7eag8" path="res://Scenes/fire_triple_weapon.tscn" id="3_bc0cl"]
+
+[node name="FireSingleWeapon" type="Node3D"]
+script = ExtResource("1_jkduf")
+projectiles = Array[PackedScene]([ExtResource("2_misef")])
+cooldown = 0.2
+upgrades_to = ExtResource("3_bc0cl")
+power_to_upgrade = 500
+metadata/_custom_type_script = "uid://gfm6ppj2d6xd"

@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://mhuudilf165b"]
+
+[ext_resource type="PackedScene" uid="uid://bba02yhad6qxi" path="res://Models/dragon.glb" id="1_w44qp"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w44qp"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_n4smf"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Chest.001", "Armature/Skeleton3D:Chest.002", "Armature/Skeleton3D:MouthLower", "Armature/Skeleton3D:MouthUpper", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Skull", "Armature/Skeleton3D:Stommach"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7wcf"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jjy2v"]
+graph_offset = Vector2(-41.3667, -120.76)
+nodes/Attack/node = SubResource("AnimationNodeAnimation_w44qp")
+nodes/Attack/position = Vector2(140, 160)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_n4smf")
+nodes/Blend2/position = Vector2(420, 60)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_u7wcf")
+nodes/Idle/position = Vector2(120, -60)
+nodes/output/position = Vector2(640, 60)
+node_connections = [&"Blend2", 0, &"Idle", &"Blend2", 1, &"Attack", &"output", 0, &"Blend2"]
+
+[node name="dragon" instance=ExtResource("1_w44qp")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-3.79158e-08, -0.0435475, -0.671219)
+bones/2/rotation = Quaternion(0.021888, 7.15084e-07, -6.68037e-08, 0.999761)
+bones/3/rotation = Quaternion(-0.0738905, 7.90709e-14, 4.52799e-08, 0.997266)
+bones/4/rotation = Quaternion(0.0484288, 5.98424e-14, -4.18665e-08, 0.998827)
+bones/5/rotation = Quaternion(0.0740923, -2.2564e-14, -6.41825e-08, 0.997251)
+bones/6/rotation = Quaternion(0.0106537, 1.18318e-13, 1.5913e-08, 0.999943)
+bones/7/rotation = Quaternion(0.0408436, -5.2012e-07, -5.66421e-08, 0.999166)
+bones/8/rotation = Quaternion(-0.0468695, -1.11539e-06, 9.29361e-08, 0.998901)
+bones/9/rotation = Quaternion(0.911422, 0.307715, -0.165791, 0.217104)
+bones/10/rotation = Quaternion(0.265747, 0.0280137, 0.11048, 0.957282)
+bones/11/rotation = Quaternion(0.0361506, 0.0799537, -0.00406699, 0.996135)
+bones/12/rotation = Quaternion(0.911291, -0.307965, 0.166212, 0.216976)
+bones/13/rotation = Quaternion(0.265747, -0.0280137, -0.11048, 0.957282)
+bones/14/rotation = Quaternion(0.0361507, -0.0799537, 0.00406707, 0.996135)
+bones/15/rotation = Quaternion(-0.0345764, 0.0647176, -0.545139, 0.835128)
+bones/16/rotation = Quaternion(-0.0499593, -0.00689774, -0.252116, 0.966382)
+bones/17/rotation = Quaternion(-0.0112055, -0.0147385, -0.351688, 0.935934)
+bones/18/rotation = Quaternion(-0.0345759, -0.0647169, 0.545139, 0.835129)
+bones/19/rotation = Quaternion(-0.0492047, 0.00704204, 0.252071, 0.966431)
+bones/20/rotation = Quaternion(-0.00415837, 0.0111194, 0.351427, 0.93614)
+bones/21/rotation = Quaternion(0.872562, 0.280234, -0.248828, 0.31335)
+bones/22/rotation = Quaternion(0.341813, 0.0616279, 0.158326, 0.924283)
+bones/23/rotation = Quaternion(-0.089292, 0.0557742, 0.0883567, 0.99051)
+bones/24/rotation = Quaternion(0.872563, -0.280233, 0.248826, 0.313351)
+bones/25/rotation = Quaternion(0.341813, -0.0616279, -0.158326, 0.924283)
+bones/26/rotation = Quaternion(-0.089292, -0.0557742, -0.0883567, 0.99051)
+bones/28/position = Vector3(-3.36738e-17, 0.00340526, -0.671219)
+bones/28/rotation = Quaternion(-0.733286, -0.000596843, -0.00282984, 0.679915)
+bones/29/rotation = Quaternion(0.0901942, -0.000606215, -0.00110984, 0.995923)
+bones/30/rotation = Quaternion(0.0105285, -0.000478949, 0.000249445, 0.999944)
+bones/31/rotation = Quaternion(0.0399854, -0.195507, 0.0355519, 0.979242)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 3.47119e-28, -8.66252e-07, -8.66252e-07, 1.26212e-29, -1, -3.47119e-28, 1, 1.26215e-29, -0.0246967, 0.382623, -0.309534)
+bone_name = "Saddle"
+bone_idx = 27
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_jjy2v")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 1.0

@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://c6sbc8blqwpfn"]
+
+[ext_resource type="Script" uid="uid://ce10kjibrwam5" path="res://constant_movement.gd" id="1_6aw2y"]
+[ext_resource type="PackedScene" uid="uid://dmfv2khvjys3r" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://3rvyxbokcxei" path="res://Scenes/game_manager.gd" id="1_qg11v"]
+[ext_resource type="PackedScene" uid="uid://dth7kcbo6cbh5" path="res://Scenes/enemy_drone_01.tscn" id="3_1etxn"]
+[ext_resource type="Script" uid="uid://db8v2w4kbaqi" path="res://Scenes/activator.gd" id="3_55vxf"]
+[ext_resource type="PackedScene" uid="uid://chkkuc4xcpjqn" path="res://Models/terrain.glb" id="4_1etxn"]
+[ext_resource type="PackedScene" uid="uid://qrum8b8ptu87" path="res://Scenes/power_bonus.tscn" id="4_d5s33"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjgbg"]
+sky_top_color = Color(0.449309, 0.593679, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.0675938
+ground_bottom_color = Color(0.408113, 0.438346, 0.481108, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+ground_curve = 0.022974
+
+[sub_resource type="Sky" id="Sky_bo1nx"]
+sky_material = SubResource("ProceduralSkyMaterial_jjgbg")
+
+[sub_resource type="Environment" id="Environment_8gbba"]
+background_mode = 2
+sky = SubResource("Sky_bo1nx")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1etxn"]
+size = Vector3(4.56665, 67.6135, 18.2671)
+
+[node name="GameLevel" type="Node3D"]
+script = ExtResource("1_qg11v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8gbba")
+
+[node name="MovingPart" type="Node3D" parent="."]
+script = ExtResource("1_6aw2y")
+direction = Vector2(-1, 0)
+speed = 10.0
+
+[node name="terrain" parent="MovingPart" instance=ExtResource("4_1etxn")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 46.0819, -9.75763, -80)
+
+[node name="Enemies" type="Node3D" parent="MovingPart"]
+
+[node name="EnemyDrone01" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.6652, 8.34226, 0)
+speed = 2.0
+
+[node name="EnemyDrone02" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.6652, -3.7715, 0)
+speed = 2.0
+
+[node name="EnemyDrone03" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.3486, 8.34226, 0)
+speed = 2.0
+
+[node name="EnemyDrone04" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 67.3486, -3.7715, 0)
+speed = 2.0
+
+[node name="EnemyDrone05" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 76.9095, 8.34226, 0)
+speed = 2.0
+
+[node name="EnemyDrone06" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 76.9095, -3.7715, 0)
+speed = 2.0
+
+[node name="PowerBonus" parent="MovingPart" instance=ExtResource("4_d5s33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2931, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+size = 40.0
+
+[node name="Activator" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84482, 0, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("3_55vxf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Activator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.4716, -1.58826, -0.0251465)
+shape = SubResource("BoxShape3D_1etxn")
+
+[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+motion_mode = 1
+slide_on_ceiling = false
+speed = 10.0
+
+[connection signal="body_entered" from="Activator" to="Activator" method="_on_body_entered"]
+[connection signal="child_entered_tree" from="Player" to="Player" method="_on_child_entered_tree"]

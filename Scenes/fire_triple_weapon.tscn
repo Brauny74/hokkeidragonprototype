@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm6mfitu7eag8"]
+
+[ext_resource type="Script" uid="uid://gfm6ppj2d6xd" path="res://Scripts/weapon.gd" id="1_cx4q3"]
+[ext_resource type="PackedScene" uid="uid://dyoeds1pikhxc" path="res://Scenes/fire_projectile_right.tscn" id="2_xm24f"]
+[ext_resource type="PackedScene" uid="uid://hip6pr2vv31n" path="res://Scenes/fire_projectile_down_right.tscn" id="3_6p77f"]
+[ext_resource type="PackedScene" uid="uid://c4anm8gx4q2b" path="res://Scenes/fire_projectile_up_right.tscn" id="4_e3ykl"]
+[ext_resource type="PackedScene" uid="uid://7yni24dik20s" path="res://Scenes/fire_five_weapon.tscn" id="5_xm24f"]
+
+[node name="FireTripleWeapon" type="Node3D"]
+script = ExtResource("1_cx4q3")
+shoot_points = Array[Vector3]([Vector3(2, 0, 0)])
+projectiles = Array[PackedScene]([ExtResource("2_xm24f"), ExtResource("3_6p77f"), ExtResource("4_e3ykl")])
+cooldown = 0.2
+upgrades_to = ExtResource("5_xm24f")
+power_to_upgrade = 700
+metadata/_custom_type_script = "uid://gfm6ppj2d6xd"
