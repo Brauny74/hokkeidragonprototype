@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqpo6hhkjmesg"
-path="res://.godot/imported/bonus_bad_under.png-6be9c8d071a053f480f80362a19dc930.ctex"
+uid="uid://dherwwb23m7eb"
+path="res://.godot/imported/bonus_bad_progress.png-968c365f5440b96e9ee8d7d02b437317.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Materials/bonus_bad_under.png"
-dest_files=["res://.godot/imported/bonus_bad_under.png-6be9c8d071a053f480f80362a19dc930.ctex"]
+source_file="res://Sprites/bonus_bad_progress.png"
+dest_files=["res://.godot/imported/bonus_bad_progress.png-968c365f5440b96e9ee8d7d02b437317.ctex"]
 
 [params]
 

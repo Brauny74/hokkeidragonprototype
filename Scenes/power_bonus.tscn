@@ -1,25 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://qrum8b8ptu87"]
+[gd_scene load_steps=7 format=3 uid="uid://qrum8b8ptu87"]
 
 [ext_resource type="Script" uid="uid://cwk2n7npde5ld" path="res://Scripts/bonus.gd" id="1_daaev"]
+[ext_resource type="Texture2D" uid="uid://duusodh8y8xfk" path="res://Materials/power_bonus_txt.png" id="2_u5qre"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_u5qre"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpho8"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_u5qre")
+
+[sub_resource type="QuadMesh" id="QuadMesh_daaev"]
+material = SubResource("StandardMaterial3D_tpho8")
+size = Vector2(1.5, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q02i8"]
+transparency = 1
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("2_u5qre")
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tpho8"]
+size = Vector3(1.50488, 1.49506, 1)
 
 [node name="PowerBonus" type="Area3D"]
 script = ExtResource("1_daaev")
 value = 50
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_u5qre")
+mesh = SubResource("QuadMesh_daaev")
 surface_material_override/0 = SubResource("StandardMaterial3D_q02i8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00244141, -0.00253296, 0)
 shape = SubResource("BoxShape3D_tpho8")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

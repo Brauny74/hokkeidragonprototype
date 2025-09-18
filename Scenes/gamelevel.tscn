@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6sbc8blqwpfn"]
+[gd_scene load_steps=25 format=3 uid="uid://c6sbc8blqwpfn"]
 
 [ext_resource type="Script" uid="uid://ce10kjibrwam5" path="res://Scripts/constant_movement.gd" id="1_6aw2y"]
 [ext_resource type="PackedScene" uid="uid://dmfv2khvjys3r" path="res://Scenes/player.tscn" id="1_jjgbg"]
@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dnt4bxmqait75" path="res://Scenes/boss.tscn" id="5_c5wvc"]
 [ext_resource type="Script" uid="uid://cw7ggvgcca01t" path="res://Scripts/stopper.gd" id="6_8nru3"]
 [ext_resource type="Script" uid="uid://cg8qme7xptptc" path="res://Scripts/ui_manager.gd" id="8_4mrc0"]
-[ext_resource type="Texture2D" uid="uid://c310wt5uae5om" path="res://Materials/health_bar_under.png" id="8_xd5m6"]
-[ext_resource type="Texture2D" uid="uid://hvaxcnplkdcw" path="res://Materials/health_bar_progress.png" id="9_u5ett"]
+[ext_resource type="Texture2D" uid="uid://c310wt5uae5om" path="res://Sprites/health_bar_under.png" id="8_xd5m6"]
+[ext_resource type="Texture2D" uid="uid://hvaxcnplkdcw" path="res://Sprites/health_bar_progress.png" id="9_u5ett"]
 [ext_resource type="Script" uid="uid://da1pw816yljul" path="res://Scripts/connected_bar.gd" id="10_jpfwo"]
-[ext_resource type="Texture2D" uid="uid://bqpo6hhkjmesg" path="res://Materials/bonus_bad_under.png" id="11_4mrc0"]
-[ext_resource type="Texture2D" uid="uid://dherwwb23m7eb" path="res://Materials/bonus_bad_progress.png" id="12_hv2rw"]
+[ext_resource type="Shader" uid="uid://deb4xa6gnyksk" path="res://Scenes/pixel_and_clamp.gdshader" id="10_mxk5a"]
+[ext_resource type="Texture2D" uid="uid://83llax6y4n7g" path="res://Materials/washed_palette.png" id="11_2pkju"]
+[ext_resource type="Texture2D" uid="uid://bqpo6hhkjmesg" path="res://Sprites/bonus_bad_under.png" id="11_4mrc0"]
+[ext_resource type="Texture2D" uid="uid://dherwwb23m7eb" path="res://Sprites/bonus_bad_progress.png" id="12_hv2rw"]
 [ext_resource type="Theme" uid="uid://cjbvtx7sjmoki" path="res://main_theme.tres" id="14_hv2rw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjgbg"]
@@ -39,6 +41,13 @@ size = Vector3(7.8913, 33.3131, 9.77295)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1etxn"]
 size = Vector3(4.56665, 67.6135, 18.2671)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pkju"]
+shader = ExtResource("10_mxk5a")
+shader_parameter/pixel_size = 3.0
+shader_parameter/clamp_to_palette = false
+shader_parameter/palette_texture = ExtResource("11_2pkju")
+shader_parameter/palette_size = 216
 
 [node name="GameLevel" type="Node3D"]
 script = ExtResource("1_qg11v")
@@ -339,8 +348,7 @@ speed = 2.0
 
 [node name="EnemyDrone61" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 425.479, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -352,8 +360,7 @@ speed = 2.0
 
 [node name="EnemyDrone63" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 435.162, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -365,8 +372,7 @@ speed = 2.0
 
 [node name="EnemyDrone65" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 444.723, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -378,8 +384,7 @@ speed = 2.0
 
 [node name="EnemyDrone67" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 455.881, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -391,8 +396,7 @@ speed = 2.0
 
 [node name="EnemyDrone69" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 465.564, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -404,8 +408,7 @@ speed = 2.0
 
 [node name="EnemyDrone71" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 475.125, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -417,8 +420,7 @@ speed = 2.0
 
 [node name="EnemyDrone73" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 484.645, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -430,8 +432,7 @@ speed = 2.0
 
 [node name="EnemyDrone75" parent="MovingPart/Enemies" instance=ExtResource("3_1etxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 494.206, 14.8205, 0)
-direction = Vector2(-1, 3)
-movement = 1
+direction = Vector2(-1, -3)
 curve_speed = 0.2
 speed = 2.0
 
@@ -498,6 +499,16 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.68
 motion_mode = 1
 slide_on_ceiling = false
 speed = 10.0
+
+[node name="PixelizationLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="ColorRect" parent="PixelizationLayer"]
+material = SubResource("ShaderMaterial_2pkju")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = ExtResource("8_4mrc0")
