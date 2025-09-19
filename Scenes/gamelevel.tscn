@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6sbc8blqwpfn"]
+[gd_scene load_steps=26 format=3 uid="uid://c6sbc8blqwpfn"]
 
 [ext_resource type="Script" uid="uid://ce10kjibrwam5" path="res://Scripts/constant_movement.gd" id="1_6aw2y"]
 [ext_resource type="PackedScene" uid="uid://dmfv2khvjys3r" path="res://Scenes/player.tscn" id="1_jjgbg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qrum8b8ptu87" path="res://Scenes/power_bonus.tscn" id="4_d5s33"]
 [ext_resource type="PackedScene" uid="uid://dnt4bxmqait75" path="res://Scenes/boss.tscn" id="5_c5wvc"]
 [ext_resource type="Script" uid="uid://cw7ggvgcca01t" path="res://Scripts/stopper.gd" id="6_8nru3"]
+[ext_resource type="AudioStream" uid="uid://db8rqkq262wlo" path="res://Sounds/chipnese.ogg" id="8_0c31f"]
 [ext_resource type="Script" uid="uid://cg8qme7xptptc" path="res://Scripts/ui_manager.gd" id="8_4mrc0"]
 [ext_resource type="Texture2D" uid="uid://c310wt5uae5om" path="res://Sprites/health_bar_under.png" id="8_xd5m6"]
 [ext_resource type="Texture2D" uid="uid://hvaxcnplkdcw" path="res://Sprites/health_bar_progress.png" id="9_u5ett"]
@@ -499,6 +500,15 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.68
 motion_mode = 1
 slide_on_ceiling = false
 speed = 10.0
+
+[node name="Music" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.07908e-06, 0, 24.6865)
+stream = ExtResource("8_0c31f")
+attenuation_model = 3
+volume_db = -5.0
+autoplay = true
+area_mask = 0
+parameters/looping = true
 
 [node name="PixelizationLayer" type="CanvasLayer" parent="."]
 

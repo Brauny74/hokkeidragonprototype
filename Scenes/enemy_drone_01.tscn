@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dth7kcbo6cbh5"]
+[gd_scene load_steps=15 format=3 uid="uid://dth7kcbo6cbh5"]
 
 [ext_resource type="Script" uid="uid://ulrgai7scf61" path="res://Scripts/enemy_controller.gd" id="1_6ebkp"]
 [ext_resource type="PackedScene" uid="uid://b7rmp7urpefoh" path="res://Models/steam_drone.glb" id="2_8buv6"]
 [ext_resource type="PackedScene" uid="uid://qrum8b8ptu87" path="res://Scenes/power_bonus.tscn" id="2_ckyvt"]
 [ext_resource type="Script" uid="uid://bjxi8f4gfee77" path="res://Scripts/health.gd" id="3_8buv6"]
+[ext_resource type="AudioStream" uid="uid://v2c2wy2458q8" path="res://Sounds/lowFrequency_explosion_000.ogg" id="6_7ple2"]
 [ext_resource type="Texture2D" uid="uid://dmy0p0y3bs551" path="res://Materials/fire_particle.png" id="7_nxok3"]
 
 [sub_resource type="Gradient" id="Gradient_oeglh"]
@@ -53,7 +54,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_6ebkp")
 direction = Vector2(-1, 0)
-death_time = 0.4
+death_time = 1.0
 bonuses_to_drop = Array[PackedScene]([ExtResource("2_ckyvt")])
 damage_on_touch = 10
 speed = 5.0
@@ -78,5 +79,8 @@ draw_pass_1 = SubResource("SphereMesh_7ple2")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.532577, -1.01189)
 shape = SubResource("CapsuleShape3D_361um")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_7ple2")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

@@ -21,11 +21,13 @@ func damage(value: int):
 	CurrentHealth -= value
 	damaged.emit()
 	if CurrentHealth <= 0:
+		is_invincible = true
 		die()
-	is_invincible = true
-	await get_tree().create_timer(invicibility_frame).timeout
-	is_invincible = false
-	frame_ended.emit()
+	else:
+		is_invincible = true
+		await get_tree().create_timer(invicibility_frame).timeout
+		is_invincible = false
+		frame_ended.emit()
 
 func die():
 	died.emit()

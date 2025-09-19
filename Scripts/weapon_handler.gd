@@ -2,6 +2,7 @@ extends Node3D
 class_name WeaponHandler
 
 var weapon: Weapon
+@onready var update_sound := $UpgradeSound
 
 signal upgraded
 
@@ -20,6 +21,8 @@ func receive_power_bonus(value: int):
 		weapon.power_to_upgrade -= value
 		if weapon.power_to_upgrade <= 0:
 			set_weapon(weapon.upgrades_to)
+			if update_sound != null:
+				update_sound.play()
 			upgraded.emit(weapon.power_to_upgrade)
 
 func _on_child_entered_tree(node: Node) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmfv2khvjys3r"]
+[gd_scene load_steps=14 format=3 uid="uid://dmfv2khvjys3r"]
 
 [ext_resource type="PackedScene" uid="uid://mhuudilf165b" path="res://Models/dragon.tscn" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://bcswy5rrliihd" path="res://Scripts/player_controller.gd" id="1_f1ek2"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://vb61qw4vd63x" path="res://Materials/dragon_dragon_TXT.png" id="4_8erm5"]
 [ext_resource type="PackedScene" uid="uid://jjyfn2m41grq" path="res://Scenes/fire_single_weapon.tscn" id="5_x3wgy"]
 [ext_resource type="Script" uid="uid://bjxi8f4gfee77" path="res://Scripts/health.gd" id="8_8erm5"]
+[ext_resource type="AudioStream" uid="uid://dxfpvyeiy1s0r" path="res://Sounds/zap1.ogg" id="9_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://d1kad2cbwktok" path="res://Sounds/phaserUp3.ogg" id="10_gymyn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1ek2"]
 diffuse_mode = 3
@@ -32,43 +34,43 @@ visible_time = 0.1
 invisible_time = 0.1
 
 [node name="Skeleton3D" parent="Mesh/Armature" index="0"]
-bones/0/position = Vector3(-5.96647e-10, 0.0375724, -0.671219)
-bones/2/rotation = Quaternion(-0.00358288, 7.15251e-07, -9.83388e-09, 0.999994)
-bones/3/rotation = Quaternion(-0.0882824, 9.89881e-14, 6.03e-08, 0.996096)
-bones/4/rotation = Quaternion(0.048704, 7.70542e-14, -4.1721e-08, 0.998813)
-bones/5/rotation = Quaternion(0.189662, 1.53157e-14, -1.64295e-07, 0.981849)
-bones/6/rotation = Quaternion(0.0299842, 4.59137e-14, -4.26224e-09, 0.99955)
+bones/0/position = Vector3(-1.08383e-09, 0.0365134, -0.671219)
+bones/2/rotation = Quaternion(-0.00106902, 7.15255e-07, 4.41389e-09, 1)
+bones/3/rotation = Quaternion(-0.0872363, 1.00967e-13, 7.71534e-08, 0.996188)
+bones/4/rotation = Quaternion(0.048453, 4.87388e-15, -4.22294e-08, 0.998826)
+bones/5/rotation = Quaternion(0.177304, 2.70225e-14, -1.5359e-07, 0.984156)
+bones/6/rotation = Quaternion(0.0285788, -3.12215e-15, -2.68838e-08, 0.999592)
 bones/7/rotation = Quaternion(0.0408436, -5.2012e-07, -5.66421e-08, 0.999166)
 bones/8/rotation = Quaternion(-0.0468695, -1.11539e-06, 9.29361e-08, 0.998901)
-bones/9/rotation = Quaternion(0.893766, 0.295283, -0.187237, 0.280951)
+bones/9/rotation = Quaternion(0.896797, 0.297387, -0.18405, 0.271001)
 bones/10/rotation = Quaternion(0.265747, 0.0280137, 0.11048, 0.957282)
 bones/11/rotation = Quaternion(0.0361506, 0.0799537, -0.00406699, 0.996135)
-bones/12/rotation = Quaternion(0.893706, -0.295391, 0.187455, 0.280882)
+bones/12/rotation = Quaternion(0.89679, -0.297402, 0.184075, 0.270993)
 bones/13/rotation = Quaternion(0.265747, -0.0280137, -0.11048, 0.957282)
 bones/14/rotation = Quaternion(0.0361507, -0.0799537, 0.00406707, 0.996135)
-bones/15/rotation = Quaternion(-0.188649, 0.304095, -0.535747, 0.764796)
-bones/16/rotation = Quaternion(-0.110988, 0.00480489, -0.255263, 0.960468)
-bones/17/rotation = Quaternion(-0.0614427, -0.0405222, -0.352904, 0.93276)
-bones/18/rotation = Quaternion(-0.188648, -0.304095, 0.535747, 0.764796)
-bones/19/rotation = Quaternion(-0.110979, -0.0048032, 0.255263, 0.960469)
-bones/20/rotation = Quaternion(-0.0599814, 0.0397726, 0.352884, 0.932895)
-bones/21/rotation = Quaternion(0.895911, 0.300249, -0.22427, 0.238533)
+bones/15/rotation = Quaternion(-0.169141, 0.273842, -0.539656, 0.777929)
+bones/16/rotation = Quaternion(-0.102537, 0.00318043, -0.254885, 0.961514)
+bones/17/rotation = Quaternion(-0.0544736, -0.0369471, -0.352802, 0.93338)
+bones/18/rotation = Quaternion(-0.169141, -0.273841, 0.539656, 0.777929)
+bones/19/rotation = Quaternion(-0.102429, -0.00315969, 0.25488, 0.961527)
+bones/20/rotation = Quaternion(-0.054388, 0.0369032, 0.352801, 0.933387)
+bones/21/rotation = Quaternion(0.890643, 0.295419, -0.230596, 0.257505)
 bones/22/rotation = Quaternion(0.341813, 0.0616279, 0.158326, 0.924283)
 bones/23/rotation = Quaternion(-0.089292, 0.0557742, 0.0883567, 0.99051)
-bones/24/rotation = Quaternion(0.895911, -0.300248, 0.224268, 0.238533)
+bones/24/rotation = Quaternion(0.890643, -0.295418, 0.230594, 0.257506)
 bones/25/rotation = Quaternion(0.341813, -0.0616279, -0.158326, 0.924283)
 bones/26/rotation = Quaternion(-0.089292, -0.0557742, -0.0883567, 0.99051)
-bones/28/position = Vector3(-3.36738e-17, 0.0659306, -0.671219)
-bones/28/rotation = Quaternion(-0.732679, -0.000953313, -0.00451998, 0.680559)
-bones/29/rotation = Quaternion(0.15353, -0.000534195, -0.00114625, 0.988143)
-bones/30/rotation = Quaternion(0.0324594, -0.000438542, 0.000207519, 0.999473)
-bones/31/rotation = Quaternion(0.128312, -0.248647, 0.043375, 0.959077)
+bones/28/position = Vector3(-3.36738e-17, 0.0591268, -0.671219)
+bones/28/rotation = Quaternion(-0.732754, -0.000909484, -0.00431218, 0.68048)
+bones/29/rotation = Quaternion(0.146684, -0.00054212, -0.00114252, 0.989183)
+bones/30/rotation = Quaternion(0.0308651, -0.000441488, 0.000210572, 0.999524)
+bones/31/rotation = Quaternion(0.118827, -0.243032, 0.0425521, 0.961772)
 
 [node name="Dragon" parent="Mesh/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_f1ek2")
 
 [node name="BoneAttachment3D" parent="Mesh/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 3.47119e-28, -8.66252e-07, -8.66252e-07, 1.26212e-29, -1, -3.47119e-28, 1, 1.26215e-29, -0.0246967, 0.463743, -0.309534)
+transform = Transform3D(1, 3.47119e-28, -8.66252e-07, -8.66252e-07, 1.26212e-29, -1, -3.47119e-28, 1, 1.26215e-29, -0.0246967, 0.462684, -0.309534)
 
 [node name="miko" parent="Mesh/Armature/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("2_6t5aa")]
 transform = Transform3D(1, -8.66252e-07, -3.47119e-28, 3.47119e-28, 1.26212e-29, 1, -8.66252e-07, -1, 1.26215e-29, 0.0246967, -0.0288196, 0.0947779)
@@ -83,6 +85,12 @@ script = ExtResource("3_6t5aa")
 [node name="FireSingleWeapon" parent="WeaponHandler" instance=ExtResource("5_x3wgy")]
 shoot_points = Array[Vector3]([Vector3(2, 0, 0)])
 
+[node name="UpgradeSound" type="AudioStreamPlayer3D" parent="WeaponHandler"]
+stream = ExtResource("10_gymyn")
+attenuation_model = 3
+volume_db = -10.0
+max_db = 0.0
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("8_8erm5")
 invicibility_frame = 0.6
@@ -94,6 +102,15 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.146111, 0)
 shape = SubResource("CapsuleShape3D_x3wgy")
+
+[node name="BonusSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_f1ek2")
+attenuation_model = 3
+volume_db = -10.0
+max_db = -24.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
 
 [connection signal="child_entered_tree" from="WeaponHandler" to="WeaponHandler" method="_on_child_entered_tree"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

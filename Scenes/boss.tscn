@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnt4bxmqait75"]
+[gd_scene load_steps=16 format=3 uid="uid://dnt4bxmqait75"]
 
 [ext_resource type="PackedScene" uid="uid://51uvpmtxabg7" path="res://Models/boss.glb" id="1_0154r"]
 [ext_resource type="Script" uid="uid://ulrgai7scf61" path="res://Scripts/enemy_controller.gd" id="1_wwfse"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dctu884u57mso" path="res://Scenes/boss_weapon.tscn" id="4_ukjjc"]
 [ext_resource type="Script" uid="uid://bjxi8f4gfee77" path="res://Scripts/health.gd" id="5_n725y"]
 [ext_resource type="Texture2D" uid="uid://dmy0p0y3bs551" path="res://Materials/fire_particle.png" id="6_mh6p8"]
+[ext_resource type="AudioStream" uid="uid://dj6ncintdpui3" path="res://Sounds/explosionCrunch_004.ogg" id="7_qtle2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0154r"]
 radius = 2.83676
@@ -84,6 +85,9 @@ lifetime = 0.2
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_odcco")
 draw_pass_1 = SubResource("SphereMesh_q76ad")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_qtle2")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_entered_tree" from="WeaponHandler" to="WeaponHandler" method="_on_child_entered_tree"]

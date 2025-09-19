@@ -18,13 +18,23 @@ var cur_y: float = 0.0
 var is_moving_up: bool = false
 @export var curve_speed: float = 0.1
 
+var death_timer: Timer
+
+func _ready() -> void:
+	super._ready()
+	death_timer = Timer.new()
+	add_child(death_timer)
+	death_timer.autostart = false
+	death_timer.wait_time = death_time
+	death_timer.timeout.connect(finish_die)
+
 func _process(delta: float) -> void:
+	if not active:
+		return
 	if weapon_handler != null:
 		weapon_handler.shoot()
 
 func _physics_process(delta: float) -> void:
-	if not active:
-		return
 	set_movement(direction)
 	super._physics_process(delta)
 
@@ -60,10 +70,16 @@ func die():
 		var new_bonus = bonuses_to_drop[bonus_index].instantiate()
 		get_parent().add_child(new_bonus)
 		new_bonus.global_position = global_position
-	active = false
 	#TODO: rebuild this for better VFX system
 	$Mesh.visible = false
-	$DeathVFX.visible = true
 	$DeathVFX.restart()
-	await get_tree().create_timer(death_time).timeout
+	$DeathVFX.visible = true
+	$DeathVFX.emitting = true
+	$DeathSound.pitch_scale = randf_range(0.8, 1.5)
+	$DeathSound.play()
+	print($DeathSound.playing)
+	active = false
+	death_timer.start()
+
+func finish_die():
 	queue_free()

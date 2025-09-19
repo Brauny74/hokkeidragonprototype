@@ -43,6 +43,7 @@ func recieve_bonus(bonus_type: Bonus.BonusType, value: int) -> void:
 	if bonus_type == Bonus.BonusType.POWER:
 		weapon_handler.receive_power_bonus(value)
 		update_power_bonus.emit(weapon_handler.weapon.power_to_upgrade)
+		$BonusSound.play()
 
 
 func damage(value: float):	

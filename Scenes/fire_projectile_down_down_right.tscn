@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn0f8dbl6ocy5"]
+[gd_scene load_steps=18 format=3 uid="uid://bn0f8dbl6ocy5"]
 
 [ext_resource type="Script" uid="uid://d3ff4w0y8ls5u" path="res://Scripts/projectile.gd" id="1_eetk2"]
 [ext_resource type="Shader" uid="uid://c4awwjwhtjnp" path="res://Shaders/fire_shader.res" id="2_vw6ad"]
 [ext_resource type="Texture2D" uid="uid://cewyjq5eb8gvg" path="res://Shaders/voronoi.png" id="3_5g576"]
 [ext_resource type="Texture2D" uid="uid://dmy0p0y3bs551" path="res://Materials/fire_particle.png" id="4_h37b3"]
 [ext_resource type="Script" uid="uid://bjxi8f4gfee77" path="res://Scripts/health.gd" id="5_3ht32"]
+[ext_resource type="AudioStream" uid="uid://b10y77titawet" path="res://Sounds/fire_00.ogg" id="6_vw6ad"]
 
 [sub_resource type="Gradient" id="Gradient_xnvdf"]
 offsets = PackedFloat32Array(0, 0.290909, 1)
@@ -94,5 +95,10 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_g1ch5")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_vw6ad")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

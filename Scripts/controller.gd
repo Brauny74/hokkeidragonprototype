@@ -7,8 +7,13 @@ var health: Health
 
 var active : bool = false: set = _set_active, get = _get_active
 
+@onready var back_up_collision_layer = collision_layer
+@onready var back_up_collision_mask = collision_mask
+
 func _set_active(value: bool) -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS if value else Node.PROCESS_MODE_DISABLED
+#	process_mode = Node.PROCESS_MODE_ALWAYS if value else Node.PROCESS_MODE_DISABLED
+	collision_mask = 0 if not value else back_up_collision_mask
+	collision_layer = 0 if not value else back_up_collision_layer
 	active = value
 
 func _get_active() -> bool:

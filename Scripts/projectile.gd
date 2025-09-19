@@ -24,6 +24,10 @@ func switch_process_mode(value: bool) -> void:
 
 func _ready() -> void:
 	health.died.connect(die)
+	var sound := $FireSound
+	if sound != null:
+		sound.pitch_scale = randf_range(0.5, 2)
+		sound.play()
 
 func _process(delta: float) -> void:
 	if active:
